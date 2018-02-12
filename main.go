@@ -72,12 +72,12 @@ func trackStats() error {
 		return err
 	}
 	
-	equity, err := result.GetString("equity")
+	equity, err := portfolio.GetString("equity")
 	if err != nil {
 		return err
 	}
 
-	extendedHoursEquity, err := result.GetString("extended_hours_equity")
+	extendedHoursEquity, err := portfolio.GetString("extended_hours_equity")
 	if err != nil {
 		if err.Error() != "not a string" {
 			return err
