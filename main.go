@@ -71,15 +71,19 @@ func trackStats() error {
 	if err != nil {
 		return err
 	}
+	
+	equity, err := result.GetString("equity")
+	if err != nil {
+		return err
+	}
 
-	extendedHoursEquity, err := portfolio.GetString("extended_hours_equity")
+	extendedHoursEquity, err := result.GetString("extended_hours_equity")
 	if err != nil {
-		return err
+		if err.Error() != "not a string" {
+			return err
+		}
 	}
-	equity, err := portfolio.GetString("equity")
-	if err != nil {
-		return err
-	}
+	
 	buyingPower, err := account.GetString("margin_balances", "unallocated_margin_cash")
 	if err != nil {
 		return err
